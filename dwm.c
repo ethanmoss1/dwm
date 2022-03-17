@@ -463,8 +463,10 @@ buttonpress(XEvent *e)
 			arg.ui = 1 << i;
 		} else if (ev->x < x + blw)
 			click = ClkLtSymbol;
-		else if (ev->x > selmon->ww - statusw) {
-			x = selmon->ww - statusw;
+	 /* else if (ev->x > selmon->ww - statusw) { */
+		else if (ev->x > selmon->ww - statusw - 2 * sp) {
+		 /* x = selmon->ww - statusw; */
+			x = selmon->ww - statusw - 2 * sp;
 			click = ClkStatusText;
 
 			char *text, *s, ch;
@@ -887,7 +889,10 @@ drawbar(Monitor *m)
                 drw_rect draw x y w h ect */
 			// DEFAULT SQUARE TOPLEFT
             // drw_rect(drw, x + boxs, boxs, boxw, boxw,
-            drw_rect(drw, x + boxs, bh - boxw, w - boxw, boxw + 1,
+            
+            // BAR AT BOTTOM
+            //drw_rect(drw, x + boxs, bh - boxw, w - boxw, boxw + 1,
+            drw_rect(drw, x + boxs, bh - ( boxw / 2 ) , w - boxw, boxw / 2 ,
                     m == selmon && selmon->sel && selmon->sel->tags & 1 << i,
                     urg & 1 << i);
 		x += w;
@@ -1060,7 +1065,7 @@ getstatusbarpid()
 				return statuspid;
 		}
 	}
-	if (!(fp = popen("pidof -s "STATUSBAR, "r")))
+	if (!(fp = popen("pgrep -o "STATUSBAR, "r")))
 		return -1;
 	fgets(buf, sizeof(buf), fp);
 	pclose(fp);

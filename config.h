@@ -3,10 +3,10 @@
 
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int snap      = 10;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const int user_bh            = 0;       /* >0 sets bar height */
+static const int topbar             = 0;        /* 0 means bottom bar */
+static const int user_bh            = 36;       /* >0 sets bar height */
 static const int vertpad            = 10;       /* vertical padding of bar */
 static const int sidepad            = 10;       /* horizontal padding of bar */
 static const int gappx              = 10;       /* padding of windows */
@@ -67,7 +67,6 @@ static const char *termcmd[]    = { "alacritty", NULL };
 static const char *firefoxcmd[] = { "firefox", NULL };
 
 /* Media Control Commands */
-static const char *cmdmute[]    = { "amixer", "set", "Master", "togglemute", NULL };
 static const char *cmdplay[]    = { "playerctl", "-a", "play-pause", NULL };
 static const char *cmdnxt[]     = { "playerctl", "-a", "next", NULL };
 static const char *cmdprv[]     = { "playerctl", "-a", "previous", NULL };
@@ -121,7 +120,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,                       quit,           {0} },
     { 0,                            XF86XK_AudioRaiseVolume,    spawn,          SHCMD("amixer set Master 5%+; pkill -RTMIN+11 dwmblocks") },
     { 0,                            XF86XK_AudioLowerVolume,    spawn,          SHCMD("amixer set Master 5%-; pkill -RTMIN+11 dwmblocks") },
-    { 0,                            XF86XK_AudioMute,           spawn,          {.v = cmdmute } },
+    { 0,                            XF86XK_AudioMute,           spawn,          SHCMD("amixer set Master togglemute; pkill -RTMIN+11 dwmblocks") },
     { 0,                            XF86XK_AudioPlay,           spawn,          {.v = cmdplay } },
     { 0,                            XF86XK_AudioPrev,           spawn,          {.v = cmdnxt } },
     { 0,                            XF86XK_AudioNext,           spawn,          {.v = cmdprv } },
@@ -139,11 +138,13 @@ static Button buttons[] = {
 	{ ClkStatusText,        0,              Button1,        sigstatusbar,   {.i = 1} },
 	{ ClkStatusText,        0,              Button2,        sigstatusbar,   {.i = 2} },
 	{ ClkStatusText,        0,              Button3,        sigstatusbar,   {.i = 3} },
+	{ ClkStatusText,        0,              Button4,        sigstatusbar,   {.i = 4} },
+	{ ClkStatusText,        0,              Button5,        sigstatusbar,   {.i = 5} },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
 	{ ClkTagBar,            0,              Button1,        view,           {0} },
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
-	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} }, 
 };
