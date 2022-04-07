@@ -1,6 +1,9 @@
 /* For Function Multimedia keys */
 #include <X11/XF86keysym.h>
 
+/* Colour scheme */
+#include "themes/gruvbox.h"
+
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 10;       /* snap pixel */
@@ -13,20 +16,8 @@ static const int gappx              = 10;       /* padding of windows */
 static const char *fonts[]          = { "RobotoMono Nerd Font:size=12" };
 static const char dmenufont[]       = "RobotoMono Nerd Font:size=12";
 
-// Color Theme
-static const char col_gray1[]       = "#282828";
-static const char col_gray2[]       = "#282828";
-static const char col_gray3[]       = "#ebddb2";
-static const char col_gray4[]       = "#ebddb2";
-static const char col_cyan[]        = "#d65d0e";
-static const char *colors[][3]      = {
-	/*               text?    bg         border   */
-	[SchemeNorm] = { col_gray4, col_gray1, col_gray1 },
-	[SchemeSel]  = { col_gray4, col_cyan, col_gray1},
-};
-
 /* Tag names */
-static const char *tags[] = { " ﮟ ", "  ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 " };
+static const char *tags[] = { " ﮟ ", "  ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " ﱘ " };
 
 
 static const Rule rules[] = {
@@ -39,7 +30,7 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact     = 0.6; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
@@ -63,7 +54,7 @@ static const Layout layouts[] = {
 
 /* General Commands */
 static char dmenumon[2]         = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_fg, "-sb", col_bg, "-sf", col_dorange, NULL };
 static const char *termcmd[]    = { "alacritty", NULL };
 static const char *firefoxcmd[] = { "firefox", NULL };
 
@@ -71,8 +62,8 @@ static const char *firefoxcmd[] = { "firefox", NULL };
 static const char *cmdplay[]    = { "playerctl", "-a", "play-pause", NULL };
 static const char *cmdnxt[]     = { "playerctl", "-a", "next", NULL };
 static const char *cmdprv[]     = { "playerctl", "-a", "previous", NULL };
-
 static Key keys[] = {
+
 /*
  
     ORIGINAL KEYSBINDINGS - for reference when/if i want to use them 
