@@ -14,10 +14,9 @@ static const int vertpad            = 10;       /* vertical padding of bar */
 static const int sidepad            = 10;       /* horizontal padding of bar */
 static const int gappx              = 10;       /* padding of windows */
 static const char *fonts[]          = { "RobotoMono Nerd Font:size=12" };
-static const char dmenufont[]       = "RobotoMono Nerd Font:size=12";
 
 /* Tag names */
-static const char *tags[] = { " ﮟ ", "  ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " ﱘ " };
+static const char *tags[] = { " ﮟ ", "  ", "  ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " ﱘ " };
 
 
 static const Rule rules[] = {
@@ -25,6 +24,7 @@ static const Rule rules[] = {
 	{ "Alacritty",  NULL,       NULL,    0,        0,     	   1,		  -1 },
 	{ "Gimp",       NULL,       NULL,    0,        1,          0,         -1 },
 	{ "Firefox",    NULL,       NULL,    1 << 8,   0,          0,         -1 },
+    { NULL,         NULL,      "QTTestWindow",    0,        1,          0,         -1 }, 
 };
 
 /* layout(s) */
@@ -54,7 +54,7 @@ static const Layout layouts[] = {
 
 /* General Commands */
 static char dmenumon[2]         = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_fg, "-sb", col_bg, "-sf", col_dorange, NULL };
+static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, NULL };
 static const char *termcmd[]    = { "alacritty", NULL };
 static const char *firefoxcmd[] = { "firefox", NULL };
 
@@ -114,8 +114,8 @@ static Key keys[] = {
     { 0,                            XF86XK_AudioLowerVolume,    spawn,          SHCMD("amixer set Master 5%-; pkill -RTMIN+11 dwmblocks") },
     { 0,                            XF86XK_AudioMute,           spawn,          SHCMD("amixer set Master togglemute; pkill -RTMIN+11 dwmblocks") },
     { 0,                            XF86XK_AudioPlay,           spawn,          {.v = cmdplay } },
-    { 0,                            XF86XK_AudioPrev,           spawn,          {.v = cmdnxt } },
-    { 0,                            XF86XK_AudioNext,           spawn,          {.v = cmdprv } },
+    { 0,                            XF86XK_AudioPrev,           spawn,          {.v = cmdprv } },
+    { 0,                            XF86XK_AudioNext,           spawn,          {.v = cmdnxt } },
     { 0,                            XF86XK_MonBrightnessUp,     spawn,          SHCMD("xbacklight -time 300 -steps 100 -inc 10; pkill -RTMIN+12 dwmblocks") },
     { 0,                            XF86XK_MonBrightnessDown,   spawn,          SHCMD("xbacklight -time 300 -steps 100 -dec 10; pkill -RTMIN+12 dwmblocks") },
 };
@@ -123,20 +123,20 @@ static Key keys[] = {
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
-	/* click                event mask      button          function        argument */
-	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
-	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button1,        sigstatusbar,   {.i = 1} },
-	{ ClkStatusText,        0,              Button2,        sigstatusbar,   {.i = 2} },
-	{ ClkStatusText,        0,              Button3,        sigstatusbar,   {.i = 3} },
-	{ ClkStatusText,        0,              Button4,        sigstatusbar,   {.i = 4} },
-	{ ClkStatusText,        0,              Button5,        sigstatusbar,   {.i = 5} },
-	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
-	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
-	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
-	{ ClkTagBar,            0,              Button1,        view,           {0} },
-	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
-	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
-	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} }, 
+	/* click                event mask          button          function        argument */
+	{ ClkLtSymbol,          0,                  Button1,        setlayout,      {0} },
+	{ ClkLtSymbol,          0,                  Button3,        setlayout,      {.v = &layouts[2]} },
+	{ ClkWinTitle,          0,                  Button2,        zoom,           {0} },
+	{ ClkStatusText,        0,                  Button1,        sigstatusbar,   {.i = 1} },
+	{ ClkStatusText,        0,                  Button2,        sigstatusbar,   {.i = 2} },
+	{ ClkStatusText,        0,                  Button3,        sigstatusbar,   {.i = 3} },
+	{ ClkStatusText,        0,                  Button4,        sigstatusbar,   {.i = 4} },
+	{ ClkStatusText,        0,                  Button5,        sigstatusbar,   {.i = 5} },
+	{ ClkClientWin,         MODKEY,             Button1,        movemouse,      {0} },
+	{ ClkClientWin,         MODKEY|ShiftMask,   Button1,        togglefloating, {0} },
+	{ ClkClientWin,         MODKEY,             Button3,        resizemouse,    {0} },
+	{ ClkTagBar,            0,                  Button1,        view,           {0} },
+	{ ClkTagBar,            0,                  Button3,        toggleview,     {0} },
+	{ ClkTagBar,            MODKEY,             Button1,        tag,            {0} },
+	{ ClkTagBar,            MODKEY,             Button3,        toggletag,      {0} }, 
 };

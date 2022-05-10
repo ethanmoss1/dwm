@@ -1,6 +1,6 @@
 /* Gruvbox Theme */
 
-// Colours
+/* OLD Colours
 static const char col_bg[]          = "#282828";
 static const char col_dred[]        = "#cc241d";
 static const char col_dgreen[]      = "#98971a";
@@ -19,6 +19,13 @@ static const char col_laqua[]       = "#8ec07c";
 static const char col_fg[]          = "#ebdbb2";
 static const char col_dorange[]     = "#d65d0e";
 static const char col_lorange[]     = "#fe8019";
+*/
+
+// New Colours
+// GRUVBOX MATERIAL
+static const char col_fg[]          = "#dfbf8e";
+static const char col_bg[]          = "#282828";
+static const char col_dorange[]     = "#e78a4e";
 
 // Schemes 
 static const char *colors[][3]      = {
