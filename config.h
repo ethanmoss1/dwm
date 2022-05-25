@@ -16,8 +16,8 @@ static const int gappx              = 10;       /* padding of windows */
 static const char *fonts[]          = { "RobotoMono Nerd Font:size=12" };
 
 /* Tag names */
-static const char *tags[] = { " ﮟ ", "  ", "  ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " ﱘ " };
-
+//static const char *tags[] = { " ﮟ ", "  ", "  ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " ﱘ " };
+static const char *tags[] = { " ﮟ ", "  ", "  ", " ﱘ " };
 
 static const Rule rules[] = {
 	/* class        instance    title    tags mask isfloating  Centre     monitor */
