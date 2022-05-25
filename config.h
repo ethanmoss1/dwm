@@ -24,7 +24,6 @@ static const Rule rules[] = {
 	{ "Alacritty",  NULL,       NULL,    0,        0,     	   1,		  -1 },
 	{ "Gimp",       NULL,       NULL,    0,        1,          0,         -1 },
 	{ "Firefox",    NULL,       NULL,    1 << 8,   0,          0,         -1 },
-    { NULL,         NULL,      "QTTestWindow",    0,        1,          0,         -1 }, 
 };
 
 /* layout(s) */
@@ -116,8 +115,8 @@ static Key keys[] = {
     { 0,                            XF86XK_AudioPlay,           spawn,          {.v = cmdplay } },
     { 0,                            XF86XK_AudioPrev,           spawn,          {.v = cmdprv } },
     { 0,                            XF86XK_AudioNext,           spawn,          {.v = cmdnxt } },
-    { 0,                            XF86XK_MonBrightnessUp,     spawn,          SHCMD("xbacklight -time 300 -steps 100 -inc 10; pkill -RTMIN+12 dwmblocks") },
-    { 0,                            XF86XK_MonBrightnessDown,   spawn,          SHCMD("xbacklight -time 300 -steps 100 -dec 10; pkill -RTMIN+12 dwmblocks") },
+    { 0,                            XF86XK_MonBrightnessUp,     spawn,          SHCMD("xbacklight -time 0 -inc 10; pkill -RTMIN+12 dwmblocks") },
+    { 0,                            XF86XK_MonBrightnessDown,   spawn,          SHCMD("xbacklight -time 0 -dec 10; pkill -RTMIN+12 dwmblocks") },
 };
 
 /* button definitions */
