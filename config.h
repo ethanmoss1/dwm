@@ -52,11 +52,12 @@ static const Layout layouts[] = {
 #define STATUSBAR "dwmblocks"
 
 /* General Commands */
-static char dmenumon[2]         = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, NULL };
-static const char *termcmd[]    = { "alacritty", NULL };
-static const char *firefoxcmd[] = { "firefox", NULL };
-static const char *emacscmd[]   = { "emacs", NULL };
+static char dmenumon[2]             = "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char *dmenucmd[]       = { "dmenu_run", "-m", dmenumon, NULL };
+static const char *termcmd[]        = { "alacritty", NULL };
+static const char *firefoxcmd[]     = { "firefox", NULL };
+static const char *emacscmd[]       = { "emacs", NULL };
+static const char *screenshotcmd[]  = { "flameshot", "gui", NULL };
 
 /* Media Control Commands */
 static const char *cmdplay[]    = { "playerctl", "-a", "play-pause", NULL };
@@ -99,6 +100,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,                       spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_f,                       spawn,          {.v = firefoxcmd } },
 	{ MODKEY,                       XK_e,                       spawn,          {.v = emacscmd} },
+	{ MODKEY,                       XK_s,                       spawn,          {.v = screenshotcmd} },
 	{ MODKEY,                       XK_q,                       killclient,     {0} },
 	{ MODKEY|ShiftMask,             XK_0,                       tag,            {.ui = ~0 } },
 	TAGKEYS(                        XK_1,                                       0)
